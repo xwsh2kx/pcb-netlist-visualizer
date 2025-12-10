@@ -205,8 +205,14 @@ docker push $ECR_URL/pcb-server:latest
 
 The `/examples/` directory contains sample netlists:
 
-- `voltage-divider.json` - Simple resistor divider
+- `555-led-flasher.json` - 555 timer LED flasher circuit
+- `arduino-weather-station.json` - Arduino-based temperature/humidity sensor node
+- `class-d-amplifier.json` - Simple Class-D audio amplifier
+- `esp32-iot-sensor-node.json` - ESP32 IoT sensor node with peripherals
+- `h-bridge-motor-driver.json` - H-bridge motor driver for bidirectional control
 - `inverting-amplifier.json` - Op-amp circuit with feedback
+- `usb-c-power-delivery.json` - USB-C Power Delivery configuration example
+- `voltage-divider.json` - Simple resistor divider
 
 ## License
 
