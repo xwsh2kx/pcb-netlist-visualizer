@@ -1,0 +1,259 @@
+{
+  "version": "1.0",
+  "design": {
+    "title": "PAM8403 Stereo Class-D Amplifier",
+    "tool": "KiCad",
+    "date": "2024-01-21"
+  },
+  "components": [
+    {
+      "ref": "U1",
+      "value": "PAM8403",
+      "footprint": "SOP-16",
+      "description": "3W Stereo Class-D Amplifier"
+    },
+    {
+      "ref": "C1",
+      "value": "10uF",
+      "footprint": "C_0805",
+      "description": "Power supply decoupling"
+    },
+    {
+      "ref": "C2",
+      "value": "10uF",
+      "footprint": "C_0805",
+      "description": "Power supply decoupling"
+    },
+    {
+      "ref": "C3",
+      "value": "1uF",
+      "footprint": "C_0603",
+      "description": "Left input coupling"
+    },
+    {
+      "ref": "C4",
+      "value": "1uF",
+      "footprint": "C_0603",
+      "description": "Right input coupling"
+    },
+    {
+      "ref": "R1",
+      "value": "10K",
+      "footprint": "R_0603",
+      "description": "Left input bias"
+    },
+    {
+      "ref": "R2",
+      "value": "10K",
+      "footprint": "R_0603",
+      "description": "Right input bias"
+    },
+    {
+      "ref": "R3",
+      "value": "20K",
+      "footprint": "R_0603",
+      "description": "Left input attenuator"
+    },
+    {
+      "ref": "R4",
+      "value": "20K",
+      "footprint": "R_0603",
+      "description": "Right input attenuator"
+    },
+    {
+      "ref": "RV1",
+      "value": "10K",
+      "footprint": "Potentiometer_Alps_RK09",
+      "description": "Volume control"
+    },
+    {
+      "ref": "J1",
+      "value": "AudioJack3_SwitchT",
+      "footprint": "Jack_3.5mm",
+      "description": "Stereo audio input"
+    },
+    {
+      "ref": "J2",
+      "value": "Screw_Terminal_01x02",
+      "footprint": "TerminalBlock_3.5mm",
+      "description": "Left speaker output"
+    },
+    {
+      "ref": "J3",
+      "value": "Screw_Terminal_01x02",
+      "footprint": "TerminalBlock_3.5mm",
+      "description": "Right speaker output"
+    },
+    {
+      "ref": "J4",
+      "value": "Barrel_Jack",
+      "footprint": "BarrelJack_2.1mm",
+      "description": "5V Power input"
+    },
+    {
+      "ref": "SW1",
+      "value": "SW_SPST",
+      "footprint": "SW_Slide",
+      "description": "Power switch"
+    },
+    {
+      "ref": "D1",
+      "value": "LED_Blue",
+      "footprint": "LED_0805",
+      "description": "Power indicator"
+    },
+    {
+      "ref": "R5",
+      "value": "1K",
+      "footprint": "R_0603",
+      "description": "LED current limit"
+    }
+  ],
+  "nets": [
+    {
+      "code": 1,
+      "name": "VCC_5V",
+      "nodes": [
+        { "ref": "U1", "pin": "1", "pinFunction": "PVDDL", "pinType": "power_in" },
+        { "ref": "U1", "pin": "14", "pinFunction": "PVDDR", "pinType": "power_in" },
+        { "ref": "U1", "pin": "3", "pinFunction": "VDD", "pinType": "power_in" },
+        { "ref": "C1", "pin": "1", "pinType": "passive" },
+        { "ref": "C2", "pin": "1", "pinType": "passive" },
+        { "ref": "R1", "pin": "1", "pinType": "passive" },
+        { "ref": "R2", "pin": "1", "pinType": "passive" },
+        { "ref": "R5", "pin": "1", "pinType": "passive" },
+        { "ref": "SW1", "pin": "2", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 2,
+      "name": "VCC_IN",
+      "nodes": [
+        { "ref": "J4", "pin": "1", "pinType": "power_in" },
+        { "ref": "SW1", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 3,
+      "name": "GND",
+      "nodes": [
+        { "ref": "U1", "pin": "6", "pinFunction": "GND", "pinType": "power_in" },
+        { "ref": "U1", "pin": "7", "pinFunction": "GND", "pinType": "power_in" },
+        { "ref": "U1", "pin": "10", "pinFunction": "GND", "pinType": "power_in" },
+        { "ref": "U1", "pin": "11", "pinFunction": "GND", "pinType": "power_in" },
+        { "ref": "C1", "pin": "2", "pinType": "passive" },
+        { "ref": "C2", "pin": "2", "pinType": "passive" },
+        { "ref": "RV1", "pin": "1", "pinType": "passive" },
+        { "ref": "J1", "pin": "GND", "pinType": "power_in" },
+        { "ref": "J4", "pin": "2", "pinType": "power_in" }
+      ]
+    },
+    {
+      "code": 4,
+      "name": "AUDIO_L_IN",
+      "nodes": [
+        { "ref": "J1", "pin": "L", "pinType": "passive" },
+        { "ref": "R3", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 5,
+      "name": "AUDIO_R_IN",
+      "nodes": [
+        { "ref": "J1", "pin": "R", "pinType": "passive" },
+        { "ref": "R4", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 6,
+      "name": "VOL_L",
+      "nodes": [
+        { "ref": "R3", "pin": "2", "pinType": "passive" },
+        { "ref": "RV1", "pin": "3", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 7,
+      "name": "VOL_R",
+      "nodes": [
+        { "ref": "R4", "pin": "2", "pinType": "passive" },
+        { "ref": "RV1", "pin": "3", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 8,
+      "name": "VOL_OUT",
+      "nodes": [
+        { "ref": "RV1", "pin": "2", "pinType": "passive" },
+        { "ref": "C3", "pin": "1", "pinType": "passive" },
+        { "ref": "C4", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 9,
+      "name": "INL",
+      "nodes": [
+        { "ref": "C3", "pin": "2", "pinType": "passive" },
+        { "ref": "R1", "pin": "2", "pinType": "passive" },
+        { "ref": "U1", "pin": "4", "pinFunction": "INL", "pinType": "input" }
+      ]
+    },
+    {
+      "code": 10,
+      "name": "INR",
+      "nodes": [
+        { "ref": "C4", "pin": "2", "pinType": "passive" },
+        { "ref": "R2", "pin": "2", "pinType": "passive" },
+        { "ref": "U1", "pin": "13", "pinFunction": "INR", "pinType": "input" }
+      ]
+    },
+    {
+      "code": 11,
+      "name": "OUTL_P",
+      "nodes": [
+        { "ref": "U1", "pin": "16", "pinFunction": "+OUTL", "pinType": "output" },
+        { "ref": "J2", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 12,
+      "name": "OUTL_N",
+      "nodes": [
+        { "ref": "U1", "pin": "15", "pinFunction": "-OUTL", "pinType": "output" },
+        { "ref": "J2", "pin": "2", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 13,
+      "name": "OUTR_P",
+      "nodes": [
+        { "ref": "U1", "pin": "8", "pinFunction": "+OUTR", "pinType": "output" },
+        { "ref": "J3", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 14,
+      "name": "OUTR_N",
+      "nodes": [
+        { "ref": "U1", "pin": "9", "pinFunction": "-OUTR", "pinType": "output" },
+        { "ref": "J3", "pin": "2", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 15,
+      "name": "LED_ANODE",
+      "nodes": [
+        { "ref": "R5", "pin": "2", "pinType": "passive" },
+        { "ref": "D1", "pin": "A", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 16,
+      "name": "LED_CATHODE",
+      "nodes": [
+        { "ref": "D1", "pin": "K", "pinType": "passive" },
+        { "ref": "U1", "pin": "6", "pinFunction": "GND", "pinType": "power_in" }
+      ]
+    }
+  ]
+}

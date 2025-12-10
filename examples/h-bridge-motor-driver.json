@@ -1,0 +1,243 @@
+{
+  "version": "1.0",
+  "design": {
+    "title": "L298N Dual H-Bridge Motor Driver",
+    "tool": "KiCad",
+    "date": "2024-01-21"
+  },
+  "components": [
+    {
+      "ref": "U1",
+      "value": "L298N",
+      "footprint": "Multiwatt-15",
+      "description": "Dual H-Bridge Driver"
+    },
+    {
+      "ref": "U2",
+      "value": "7805",
+      "footprint": "TO-220",
+      "description": "5V Voltage Regulator"
+    },
+    {
+      "ref": "D1",
+      "value": "1N4007",
+      "footprint": "DO-41",
+      "description": "Flyback diode"
+    },
+    {
+      "ref": "D2",
+      "value": "1N4007",
+      "footprint": "DO-41",
+      "description": "Flyback diode"
+    },
+    {
+      "ref": "D3",
+      "value": "1N4007",
+      "footprint": "DO-41",
+      "description": "Flyback diode"
+    },
+    {
+      "ref": "D4",
+      "value": "1N4007",
+      "footprint": "DO-41",
+      "description": "Flyback diode"
+    },
+    {
+      "ref": "D5",
+      "value": "1N4007",
+      "footprint": "DO-41",
+      "description": "Flyback diode"
+    },
+    {
+      "ref": "D6",
+      "value": "1N4007",
+      "footprint": "DO-41",
+      "description": "Flyback diode"
+    },
+    {
+      "ref": "D7",
+      "value": "1N4007",
+      "footprint": "DO-41",
+      "description": "Flyback diode"
+    },
+    {
+      "ref": "D8",
+      "value": "1N4007",
+      "footprint": "DO-41",
+      "description": "Flyback diode"
+    },
+    {
+      "ref": "C1",
+      "value": "100nF",
+      "footprint": "C_0805",
+      "description": "Logic bypass"
+    },
+    {
+      "ref": "C2",
+      "value": "100uF",
+      "footprint": "CP_Radial_D8",
+      "description": "Motor supply filter"
+    },
+    {
+      "ref": "C3",
+      "value": "100uF",
+      "footprint": "CP_Radial_D6",
+      "description": "5V regulator output"
+    },
+    {
+      "ref": "J1",
+      "value": "Screw_Terminal_01x02",
+      "footprint": "TerminalBlock_5mm",
+      "description": "Motor A terminals"
+    },
+    {
+      "ref": "J2",
+      "value": "Screw_Terminal_01x02",
+      "footprint": "TerminalBlock_5mm",
+      "description": "Motor B terminals"
+    },
+    {
+      "ref": "J3",
+      "value": "Screw_Terminal_01x03",
+      "footprint": "TerminalBlock_5mm",
+      "description": "Power input (12V, GND, 5V out)"
+    },
+    {
+      "ref": "J4",
+      "value": "Conn_01x06",
+      "footprint": "PinHeader_1x06",
+      "description": "Control signals"
+    }
+  ],
+  "nets": [
+    {
+      "code": 1,
+      "name": "VCC_12V",
+      "nodes": [
+        { "ref": "U1", "pin": "4", "pinFunction": "VS", "pinType": "power_in" },
+        { "ref": "U2", "pin": "IN", "pinType": "power_in" },
+        { "ref": "C2", "pin": "1", "pinType": "passive" },
+        { "ref": "D1", "pin": "K", "pinType": "passive" },
+        { "ref": "D2", "pin": "K", "pinType": "passive" },
+        { "ref": "D5", "pin": "K", "pinType": "passive" },
+        { "ref": "D6", "pin": "K", "pinType": "passive" },
+        { "ref": "J3", "pin": "1", "pinType": "power_in" }
+      ]
+    },
+    {
+      "code": 2,
+      "name": "GND",
+      "nodes": [
+        { "ref": "U1", "pin": "8", "pinFunction": "GND", "pinType": "power_in" },
+        { "ref": "U2", "pin": "GND", "pinType": "power_in" },
+        { "ref": "C1", "pin": "2", "pinType": "passive" },
+        { "ref": "C2", "pin": "2", "pinType": "passive" },
+        { "ref": "C3", "pin": "2", "pinType": "passive" },
+        { "ref": "D3", "pin": "A", "pinType": "passive" },
+        { "ref": "D4", "pin": "A", "pinType": "passive" },
+        { "ref": "D7", "pin": "A", "pinType": "passive" },
+        { "ref": "D8", "pin": "A", "pinType": "passive" },
+        { "ref": "J3", "pin": "2", "pinType": "power_in" }
+      ]
+    },
+    {
+      "code": 3,
+      "name": "VCC_5V",
+      "nodes": [
+        { "ref": "U1", "pin": "9", "pinFunction": "VSS", "pinType": "power_in" },
+        { "ref": "U2", "pin": "OUT", "pinType": "power_out" },
+        { "ref": "C1", "pin": "1", "pinType": "passive" },
+        { "ref": "C3", "pin": "1", "pinType": "passive" },
+        { "ref": "J3", "pin": "3", "pinType": "power_out" }
+      ]
+    },
+    {
+      "code": 4,
+      "name": "MOTOR_A1",
+      "nodes": [
+        { "ref": "U1", "pin": "2", "pinFunction": "OUT1", "pinType": "output" },
+        { "ref": "D1", "pin": "A", "pinType": "passive" },
+        { "ref": "D3", "pin": "K", "pinType": "passive" },
+        { "ref": "J1", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 5,
+      "name": "MOTOR_A2",
+      "nodes": [
+        { "ref": "U1", "pin": "3", "pinFunction": "OUT2", "pinType": "output" },
+        { "ref": "D2", "pin": "A", "pinType": "passive" },
+        { "ref": "D4", "pin": "K", "pinType": "passive" },
+        { "ref": "J1", "pin": "2", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 6,
+      "name": "MOTOR_B1",
+      "nodes": [
+        { "ref": "U1", "pin": "13", "pinFunction": "OUT3", "pinType": "output" },
+        { "ref": "D5", "pin": "A", "pinType": "passive" },
+        { "ref": "D7", "pin": "K", "pinType": "passive" },
+        { "ref": "J2", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 7,
+      "name": "MOTOR_B2",
+      "nodes": [
+        { "ref": "U1", "pin": "14", "pinFunction": "OUT4", "pinType": "output" },
+        { "ref": "D6", "pin": "A", "pinType": "passive" },
+        { "ref": "D8", "pin": "K", "pinType": "passive" },
+        { "ref": "J2", "pin": "2", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 8,
+      "name": "IN1",
+      "nodes": [
+        { "ref": "U1", "pin": "5", "pinFunction": "IN1", "pinType": "input" },
+        { "ref": "J4", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 9,
+      "name": "IN2",
+      "nodes": [
+        { "ref": "U1", "pin": "7", "pinFunction": "IN2", "pinType": "input" },
+        { "ref": "J4", "pin": "2", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 10,
+      "name": "IN3",
+      "nodes": [
+        { "ref": "U1", "pin": "10", "pinFunction": "IN3", "pinType": "input" },
+        { "ref": "J4", "pin": "3", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 11,
+      "name": "IN4",
+      "nodes": [
+        { "ref": "U1", "pin": "12", "pinFunction": "IN4", "pinType": "input" },
+        { "ref": "J4", "pin": "4", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 12,
+      "name": "ENA",
+      "nodes": [
+        { "ref": "U1", "pin": "6", "pinFunction": "ENA", "pinType": "input" },
+        { "ref": "J4", "pin": "5", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 13,
+      "name": "ENB",
+      "nodes": [
+        { "ref": "U1", "pin": "11", "pinFunction": "ENB", "pinType": "input" },
+        { "ref": "J4", "pin": "6", "pinType": "passive" }
+      ]
+    }
+  ]
+}

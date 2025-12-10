@@ -1,0 +1,360 @@
+{
+  "version": "1.0",
+  "design": {
+    "title": "ESP32 IoT Sensor Node",
+    "tool": "KiCad",
+    "date": "2024-01-22"
+  },
+  "components": [
+    {
+      "ref": "U1",
+      "value": "ESP32-WROOM-32",
+      "footprint": "ESP32-WROOM-32",
+      "description": "WiFi/BT Module"
+    },
+    {
+      "ref": "U2",
+      "value": "AMS1117-3.3",
+      "footprint": "SOT-223",
+      "description": "3.3V LDO Regulator"
+    },
+    {
+      "ref": "U3",
+      "value": "CP2102",
+      "footprint": "QFN-28",
+      "description": "USB to UART Bridge"
+    },
+    {
+      "ref": "U4",
+      "value": "DHT22",
+      "footprint": "DHT22",
+      "description": "Temperature/Humidity Sensor"
+    },
+    {
+      "ref": "U5",
+      "value": "BH1750",
+      "footprint": "BH1750",
+      "description": "Light Sensor"
+    },
+    {
+      "ref": "J1",
+      "value": "USB_B_Micro",
+      "footprint": "USB_Micro_B",
+      "description": "USB Programming Port"
+    },
+    {
+      "ref": "J2",
+      "value": "Conn_01x04",
+      "footprint": "JST_XH_4pin",
+      "description": "I2C Expansion"
+    },
+    {
+      "ref": "Q1",
+      "value": "MMBT2222",
+      "footprint": "SOT-23",
+      "description": "Auto-reset DTR"
+    },
+    {
+      "ref": "Q2",
+      "value": "MMBT2222",
+      "footprint": "SOT-23",
+      "description": "Auto-reset RTS"
+    },
+    {
+      "ref": "C1",
+      "value": "22uF",
+      "footprint": "C_0805",
+      "description": "Input filter"
+    },
+    {
+      "ref": "C2",
+      "value": "22uF",
+      "footprint": "C_0805",
+      "description": "Output filter"
+    },
+    {
+      "ref": "C3",
+      "value": "100nF",
+      "footprint": "C_0603",
+      "description": "ESP32 bypass"
+    },
+    {
+      "ref": "C4",
+      "value": "100nF",
+      "footprint": "C_0603",
+      "description": "EN filter"
+    },
+    {
+      "ref": "C5",
+      "value": "100nF",
+      "footprint": "C_0603",
+      "description": "Auto-reset cap"
+    },
+    {
+      "ref": "C6",
+      "value": "100nF",
+      "footprint": "C_0603",
+      "description": "Auto-reset cap"
+    },
+    {
+      "ref": "R1",
+      "value": "10K",
+      "footprint": "R_0603",
+      "description": "EN pull-up"
+    },
+    {
+      "ref": "R2",
+      "value": "10K",
+      "footprint": "R_0603",
+      "description": "IO0 pull-up"
+    },
+    {
+      "ref": "R3",
+      "value": "10K",
+      "footprint": "R_0603",
+      "description": "DHT22 pull-up"
+    },
+    {
+      "ref": "R4",
+      "value": "4.7K",
+      "footprint": "R_0603",
+      "description": "I2C SDA pull-up"
+    },
+    {
+      "ref": "R5",
+      "value": "4.7K",
+      "footprint": "R_0603",
+      "description": "I2C SCL pull-up"
+    },
+    {
+      "ref": "R6",
+      "value": "10K",
+      "footprint": "R_0603",
+      "description": "Q1 base"
+    },
+    {
+      "ref": "R7",
+      "value": "10K",
+      "footprint": "R_0603",
+      "description": "Q2 base"
+    },
+    {
+      "ref": "SW1",
+      "value": "BOOT",
+      "footprint": "SW_Push_4mm",
+      "description": "Boot button"
+    },
+    {
+      "ref": "SW2",
+      "value": "RESET",
+      "footprint": "SW_Push_4mm",
+      "description": "Reset button"
+    },
+    {
+      "ref": "D1",
+      "value": "LED_Blue",
+      "footprint": "LED_0603",
+      "description": "Status LED"
+    },
+    {
+      "ref": "R8",
+      "value": "1K",
+      "footprint": "R_0603",
+      "description": "LED resistor"
+    }
+  ],
+  "nets": [
+    {
+      "code": 1,
+      "name": "VBUS_5V",
+      "nodes": [
+        { "ref": "J1", "pin": "VBUS", "pinType": "power_in" },
+        { "ref": "U2", "pin": "VIN", "pinType": "power_in" },
+        { "ref": "U3", "pin": "VBUS", "pinType": "power_in" },
+        { "ref": "C1", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 2,
+      "name": "VCC_3V3",
+      "nodes": [
+        { "ref": "U2", "pin": "VOUT", "pinType": "power_out" },
+        { "ref": "U1", "pin": "3V3", "pinType": "power_in" },
+        { "ref": "U3", "pin": "VDD", "pinType": "power_in" },
+        { "ref": "U4", "pin": "VCC", "pinType": "power_in" },
+        { "ref": "U5", "pin": "VCC", "pinType": "power_in" },
+        { "ref": "C2", "pin": "1", "pinType": "passive" },
+        { "ref": "C3", "pin": "1", "pinType": "passive" },
+        { "ref": "C4", "pin": "1", "pinType": "passive" },
+        { "ref": "R1", "pin": "1", "pinType": "passive" },
+        { "ref": "R2", "pin": "1", "pinType": "passive" },
+        { "ref": "R3", "pin": "1", "pinType": "passive" },
+        { "ref": "R4", "pin": "1", "pinType": "passive" },
+        { "ref": "R5", "pin": "1", "pinType": "passive" },
+        { "ref": "J2", "pin": "1", "pinType": "power_out" }
+      ]
+    },
+    {
+      "code": 3,
+      "name": "GND",
+      "nodes": [
+        { "ref": "J1", "pin": "GND", "pinType": "power_in" },
+        { "ref": "U1", "pin": "GND", "pinType": "power_in" },
+        { "ref": "U2", "pin": "GND", "pinType": "power_in" },
+        { "ref": "U3", "pin": "GND", "pinType": "power_in" },
+        { "ref": "U4", "pin": "GND", "pinType": "power_in" },
+        { "ref": "U5", "pin": "GND", "pinType": "power_in" },
+        { "ref": "C1", "pin": "2", "pinType": "passive" },
+        { "ref": "C2", "pin": "2", "pinType": "passive" },
+        { "ref": "C3", "pin": "2", "pinType": "passive" },
+        { "ref": "SW1", "pin": "2", "pinType": "passive" },
+        { "ref": "SW2", "pin": "2", "pinType": "passive" },
+        { "ref": "Q1", "pin": "E", "pinType": "passive" },
+        { "ref": "Q2", "pin": "E", "pinType": "passive" },
+        { "ref": "J2", "pin": "2", "pinType": "power_in" }
+      ]
+    },
+    {
+      "code": 4,
+      "name": "EN",
+      "nodes": [
+        { "ref": "U1", "pin": "EN", "pinFunction": "CHIP_PU", "pinType": "input" },
+        { "ref": "R1", "pin": "2", "pinType": "passive" },
+        { "ref": "C4", "pin": "2", "pinType": "passive" },
+        { "ref": "SW2", "pin": "1", "pinType": "passive" },
+        { "ref": "Q1", "pin": "C", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 5,
+      "name": "IO0",
+      "nodes": [
+        { "ref": "U1", "pin": "IO0", "pinFunction": "GPIO0", "pinType": "bidirectional" },
+        { "ref": "R2", "pin": "2", "pinType": "passive" },
+        { "ref": "SW1", "pin": "1", "pinType": "passive" },
+        { "ref": "Q2", "pin": "C", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 6,
+      "name": "TXD0",
+      "nodes": [
+        { "ref": "U1", "pin": "TXD0", "pinFunction": "U0TXD", "pinType": "output" },
+        { "ref": "U3", "pin": "RXD", "pinType": "input" }
+      ]
+    },
+    {
+      "code": 7,
+      "name": "RXD0",
+      "nodes": [
+        { "ref": "U1", "pin": "RXD0", "pinFunction": "U0RXD", "pinType": "input" },
+        { "ref": "U3", "pin": "TXD", "pinType": "output" }
+      ]
+    },
+    {
+      "code": 8,
+      "name": "DTR",
+      "nodes": [
+        { "ref": "U3", "pin": "DTR", "pinType": "output" },
+        { "ref": "C5", "pin": "1", "pinType": "passive" },
+        { "ref": "R6", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 9,
+      "name": "RTS",
+      "nodes": [
+        { "ref": "U3", "pin": "RTS", "pinType": "output" },
+        { "ref": "C6", "pin": "1", "pinType": "passive" },
+        { "ref": "R7", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 10,
+      "name": "Q1_BASE",
+      "nodes": [
+        { "ref": "R6", "pin": "2", "pinType": "passive" },
+        { "ref": "Q1", "pin": "B", "pinType": "input" },
+        { "ref": "C6", "pin": "2", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 11,
+      "name": "Q2_BASE",
+      "nodes": [
+        { "ref": "R7", "pin": "2", "pinType": "passive" },
+        { "ref": "Q2", "pin": "B", "pinType": "input" },
+        { "ref": "C5", "pin": "2", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 12,
+      "name": "DHT_DATA",
+      "nodes": [
+        { "ref": "U1", "pin": "IO4", "pinFunction": "GPIO4", "pinType": "bidirectional" },
+        { "ref": "U4", "pin": "DATA", "pinType": "bidirectional" },
+        { "ref": "R3", "pin": "2", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 13,
+      "name": "I2C_SDA",
+      "nodes": [
+        { "ref": "U1", "pin": "IO21", "pinFunction": "SDA", "pinType": "bidirectional" },
+        { "ref": "U5", "pin": "SDA", "pinType": "bidirectional" },
+        { "ref": "R4", "pin": "2", "pinType": "passive" },
+        { "ref": "J2", "pin": "3", "pinType": "bidirectional" }
+      ]
+    },
+    {
+      "code": 14,
+      "name": "I2C_SCL",
+      "nodes": [
+        { "ref": "U1", "pin": "IO22", "pinFunction": "SCL", "pinType": "output" },
+        { "ref": "U5", "pin": "SCL", "pinType": "input" },
+        { "ref": "R5", "pin": "2", "pinType": "passive" },
+        { "ref": "J2", "pin": "4", "pinType": "output" }
+      ]
+    },
+    {
+      "code": 15,
+      "name": "LED_STATUS",
+      "nodes": [
+        { "ref": "U1", "pin": "IO2", "pinFunction": "GPIO2", "pinType": "output" },
+        { "ref": "R8", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 16,
+      "name": "LED_ANODE",
+      "nodes": [
+        { "ref": "R8", "pin": "2", "pinType": "passive" },
+        { "ref": "D1", "pin": "A", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 17,
+      "name": "LED_GND",
+      "nodes": [
+        { "ref": "D1", "pin": "K", "pinType": "passive" },
+        { "ref": "U1", "pin": "GND", "pinType": "power_in" }
+      ]
+    },
+    {
+      "code": 18,
+      "name": "USB_DP",
+      "nodes": [
+        { "ref": "J1", "pin": "D+", "pinType": "bidirectional" },
+        { "ref": "U3", "pin": "D+", "pinType": "bidirectional" }
+      ]
+    },
+    {
+      "code": 19,
+      "name": "USB_DM",
+      "nodes": [
+        { "ref": "J1", "pin": "D-", "pinType": "bidirectional" },
+        { "ref": "U3", "pin": "D-", "pinType": "bidirectional" }
+      ]
+    }
+  ]
+}

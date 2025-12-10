@@ -1,0 +1,227 @@
+{
+  "version": "1.0",
+  "design": {
+    "title": "USB-C Power Delivery 20V Module",
+    "tool": "KiCad",
+    "date": "2024-01-21"
+  },
+  "components": [
+    {
+      "ref": "U1",
+      "value": "FUSB302",
+      "footprint": "WLCSP-16",
+      "description": "USB Type-C PD Controller"
+    },
+    {
+      "ref": "U2",
+      "value": "STM32G031",
+      "footprint": "TSSOP-20",
+      "description": "PD Negotiation MCU"
+    },
+    {
+      "ref": "U3",
+      "value": "AP3429",
+      "footprint": "SOT-23-6",
+      "description": "3.3V Buck Regulator"
+    },
+    {
+      "ref": "J1",
+      "value": "USB_C_Receptacle",
+      "footprint": "USB_C_16Pin",
+      "description": "USB Type-C Port"
+    },
+    {
+      "ref": "J2",
+      "value": "Conn_01x02",
+      "footprint": "TerminalBlock_2.54mm",
+      "description": "Power Output"
+    },
+    {
+      "ref": "Q1",
+      "value": "AO3400",
+      "footprint": "SOT-23",
+      "description": "VBUS Switch NMOS"
+    },
+    {
+      "ref": "L1",
+      "value": "4.7uH",
+      "footprint": "Inductor_4x4mm",
+      "description": "Buck inductor"
+    },
+    {
+      "ref": "C1",
+      "value": "10uF",
+      "footprint": "C_0805",
+      "description": "VBUS input capacitor"
+    },
+    {
+      "ref": "C2",
+      "value": "22uF",
+      "footprint": "C_0805",
+      "description": "Buck output capacitor"
+    },
+    {
+      "ref": "C3",
+      "value": "100nF",
+      "footprint": "C_0402",
+      "description": "MCU bypass"
+    },
+    {
+      "ref": "C4",
+      "value": "100nF",
+      "footprint": "C_0402",
+      "description": "PD controller bypass"
+    },
+    {
+      "ref": "R1",
+      "value": "5.1K",
+      "footprint": "R_0402",
+      "description": "CC1 pull-down"
+    },
+    {
+      "ref": "R2",
+      "value": "5.1K",
+      "footprint": "R_0402",
+      "description": "CC2 pull-down"
+    },
+    {
+      "ref": "R3",
+      "value": "10K",
+      "footprint": "R_0402",
+      "description": "Gate pull-down"
+    },
+    {
+      "ref": "D1",
+      "value": "LED_Green",
+      "footprint": "LED_0603",
+      "description": "Power Good LED"
+    },
+    {
+      "ref": "R4",
+      "value": "1K",
+      "footprint": "R_0402",
+      "description": "LED resistor"
+    }
+  ],
+  "nets": [
+    {
+      "code": 1,
+      "name": "VBUS",
+      "nodes": [
+        { "ref": "J1", "pin": "VBUS", "pinType": "power_in" },
+        { "ref": "C1", "pin": "1", "pinType": "passive" },
+        { "ref": "U3", "pin": "VIN", "pinType": "power_in" },
+        { "ref": "Q1", "pin": "D", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 2,
+      "name": "GND",
+      "nodes": [
+        { "ref": "J1", "pin": "GND", "pinType": "power_in" },
+        { "ref": "U1", "pin": "GND", "pinType": "power_in" },
+        { "ref": "U2", "pin": "VSS", "pinType": "power_in" },
+        { "ref": "U3", "pin": "GND", "pinType": "power_in" },
+        { "ref": "C1", "pin": "2", "pinType": "passive" },
+        { "ref": "C2", "pin": "2", "pinType": "passive" },
+        { "ref": "C3", "pin": "2", "pinType": "passive" },
+        { "ref": "C4", "pin": "2", "pinType": "passive" },
+        { "ref": "R1", "pin": "2", "pinType": "passive" },
+        { "ref": "R2", "pin": "2", "pinType": "passive" },
+        { "ref": "R3", "pin": "2", "pinType": "passive" },
+        { "ref": "Q1", "pin": "S", "pinType": "passive" },
+        { "ref": "J2", "pin": "2", "pinType": "power_out" }
+      ]
+    },
+    {
+      "code": 3,
+      "name": "VCC_3V3",
+      "nodes": [
+        { "ref": "U3", "pin": "VOUT", "pinType": "power_out" },
+        { "ref": "L1", "pin": "2", "pinType": "passive" },
+        { "ref": "C2", "pin": "1", "pinType": "passive" },
+        { "ref": "U1", "pin": "VDD", "pinType": "power_in" },
+        { "ref": "U2", "pin": "VDD", "pinType": "power_in" },
+        { "ref": "C3", "pin": "1", "pinType": "passive" },
+        { "ref": "C4", "pin": "1", "pinType": "passive" },
+        { "ref": "R4", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 4,
+      "name": "CC1",
+      "nodes": [
+        { "ref": "J1", "pin": "CC1", "pinType": "bidirectional" },
+        { "ref": "U1", "pin": "CC1", "pinType": "bidirectional" },
+        { "ref": "R1", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 5,
+      "name": "CC2",
+      "nodes": [
+        { "ref": "J1", "pin": "CC2", "pinType": "bidirectional" },
+        { "ref": "U1", "pin": "CC2", "pinType": "bidirectional" },
+        { "ref": "R2", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 6,
+      "name": "I2C_SDA",
+      "nodes": [
+        { "ref": "U1", "pin": "SDA", "pinType": "bidirectional" },
+        { "ref": "U2", "pin": "PA10", "pinFunction": "I2C_SDA", "pinType": "bidirectional" }
+      ]
+    },
+    {
+      "code": 7,
+      "name": "I2C_SCL",
+      "nodes": [
+        { "ref": "U1", "pin": "SCL", "pinType": "input" },
+        { "ref": "U2", "pin": "PA9", "pinFunction": "I2C_SCL", "pinType": "output" }
+      ]
+    },
+    {
+      "code": 8,
+      "name": "INT_N",
+      "nodes": [
+        { "ref": "U1", "pin": "INT_N", "pinType": "output" },
+        { "ref": "U2", "pin": "PA0", "pinFunction": "EXTI0", "pinType": "input" }
+      ]
+    },
+    {
+      "code": 9,
+      "name": "VBUS_EN",
+      "nodes": [
+        { "ref": "U2", "pin": "PA1", "pinFunction": "GPIO", "pinType": "output" },
+        { "ref": "Q1", "pin": "G", "pinType": "input" },
+        { "ref": "R3", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 10,
+      "name": "SW",
+      "nodes": [
+        { "ref": "U3", "pin": "SW", "pinType": "output" },
+        { "ref": "L1", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 11,
+      "name": "VOUT_20V",
+      "nodes": [
+        { "ref": "Q1", "pin": "D", "pinType": "passive" },
+        { "ref": "J2", "pin": "1", "pinType": "power_out" },
+        { "ref": "D1", "pin": "A", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 12,
+      "name": "LED_K",
+      "nodes": [
+        { "ref": "D1", "pin": "K", "pinType": "passive" },
+        { "ref": "R4", "pin": "2", "pinType": "passive" }
+      ]
+    }
+  ]
+}

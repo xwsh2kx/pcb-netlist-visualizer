@@ -1,0 +1,132 @@
+{
+  "version": "1.0",
+  "design": {
+    "title": "555 Timer LED Flasher",
+    "tool": "KiCad",
+    "date": "2024-01-20"
+  },
+  "components": [
+    {
+      "ref": "U1",
+      "value": "NE555",
+      "footprint": "DIP-8",
+      "description": "555 Timer IC"
+    },
+    {
+      "ref": "R1",
+      "value": "1K",
+      "footprint": "R_0805",
+      "description": "Timing resistor 1"
+    },
+    {
+      "ref": "R2",
+      "value": "47K",
+      "footprint": "R_0805",
+      "description": "Timing resistor 2"
+    },
+    {
+      "ref": "R3",
+      "value": "330",
+      "footprint": "R_0805",
+      "description": "LED current limiter"
+    },
+    {
+      "ref": "C1",
+      "value": "10uF",
+      "footprint": "CP_Radial_D5",
+      "description": "Timing capacitor"
+    },
+    {
+      "ref": "C2",
+      "value": "100nF",
+      "footprint": "C_0805",
+      "description": "Control voltage bypass"
+    },
+    {
+      "ref": "C3",
+      "value": "100nF",
+      "footprint": "C_0805",
+      "description": "Power bypass"
+    },
+    {
+      "ref": "D1",
+      "value": "LED_Red",
+      "footprint": "LED_0805",
+      "description": "Status LED"
+    },
+    {
+      "ref": "J1",
+      "value": "Barrel_Jack",
+      "footprint": "BarrelJack_2.1mm",
+      "description": "9V Power input"
+    }
+  ],
+  "nets": [
+    {
+      "code": 1,
+      "name": "VCC",
+      "nodes": [
+        { "ref": "U1", "pin": "8", "pinFunction": "VCC", "pinType": "power_in" },
+        { "ref": "U1", "pin": "4", "pinFunction": "RESET", "pinType": "input" },
+        { "ref": "R1", "pin": "1", "pinType": "passive" },
+        { "ref": "C3", "pin": "1", "pinType": "passive" },
+        { "ref": "J1", "pin": "1", "pinType": "power_out" }
+      ]
+    },
+    {
+      "code": 2,
+      "name": "GND",
+      "nodes": [
+        { "ref": "U1", "pin": "1", "pinFunction": "GND", "pinType": "power_in" },
+        { "ref": "C1", "pin": "2", "pinType": "passive" },
+        { "ref": "C2", "pin": "2", "pinType": "passive" },
+        { "ref": "C3", "pin": "2", "pinType": "passive" },
+        { "ref": "D1", "pin": "K", "pinType": "passive" },
+        { "ref": "J1", "pin": "2", "pinType": "power_in" }
+      ]
+    },
+    {
+      "code": 3,
+      "name": "DISCHARGE",
+      "nodes": [
+        { "ref": "U1", "pin": "7", "pinFunction": "DIS", "pinType": "output" },
+        { "ref": "R1", "pin": "2", "pinType": "passive" },
+        { "ref": "R2", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 4,
+      "name": "THRESHOLD",
+      "nodes": [
+        { "ref": "U1", "pin": "6", "pinFunction": "THR", "pinType": "input" },
+        { "ref": "U1", "pin": "2", "pinFunction": "TRIG", "pinType": "input" },
+        { "ref": "R2", "pin": "2", "pinType": "passive" },
+        { "ref": "C1", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 5,
+      "name": "CONTROL",
+      "nodes": [
+        { "ref": "U1", "pin": "5", "pinFunction": "CTRL", "pinType": "input" },
+        { "ref": "C2", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 6,
+      "name": "OUTPUT",
+      "nodes": [
+        { "ref": "U1", "pin": "3", "pinFunction": "OUT", "pinType": "output" },
+        { "ref": "R3", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 7,
+      "name": "LED_ANODE",
+      "nodes": [
+        { "ref": "R3", "pin": "2", "pinType": "passive" },
+        { "ref": "D1", "pin": "A", "pinType": "passive" }
+      ]
+    }
+  ]
+}

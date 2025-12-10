@@ -1,0 +1,105 @@
+{
+  "version": "1.0",
+  "design": {
+    "title": "Inverting Amplifier",
+    "tool": "KiCad",
+    "date": "2024-01-15"
+  },
+  "components": [
+    {
+      "ref": "U1",
+      "value": "LM358",
+      "footprint": "DIP-8",
+      "description": "Dual Op-Amp"
+    },
+    {
+      "ref": "R1",
+      "value": "10K",
+      "footprint": "R_0805",
+      "description": "Input resistor"
+    },
+    {
+      "ref": "R2",
+      "value": "100K",
+      "footprint": "R_0805",
+      "description": "Feedback resistor"
+    },
+    {
+      "ref": "C1",
+      "value": "100nF",
+      "footprint": "C_0805",
+      "description": "Input coupling capacitor"
+    },
+    {
+      "ref": "C2",
+      "value": "100nF",
+      "footprint": "C_0805",
+      "description": "Power bypass capacitor"
+    },
+    {
+      "ref": "J1",
+      "value": "AudioJack3",
+      "footprint": "Jack_3.5mm",
+      "description": "Audio input connector"
+    }
+  ],
+  "nets": [
+    {
+      "code": 1,
+      "name": "VCC",
+      "nodes": [
+        { "ref": "U1", "pin": "8", "pinFunction": "V+", "pinType": "power_in" },
+        { "ref": "C2", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 2,
+      "name": "GND",
+      "nodes": [
+        { "ref": "U1", "pin": "4", "pinFunction": "V-", "pinType": "power_in" },
+        { "ref": "C2", "pin": "2", "pinType": "passive" },
+        { "ref": "J1", "pin": "GND", "pinType": "power_in" }
+      ]
+    },
+    {
+      "code": 3,
+      "name": "INPUT",
+      "nodes": [
+        { "ref": "J1", "pin": "TIP", "pinType": "passive" },
+        { "ref": "C1", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 4,
+      "name": "IN_COUPLED",
+      "nodes": [
+        { "ref": "C1", "pin": "2", "pinType": "passive" },
+        { "ref": "R1", "pin": "1", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 5,
+      "name": "INV_IN",
+      "nodes": [
+        { "ref": "R1", "pin": "2", "pinType": "passive" },
+        { "ref": "R2", "pin": "1", "pinType": "passive" },
+        { "ref": "U1", "pin": "2", "pinFunction": "IN-", "pinType": "input" }
+      ]
+    },
+    {
+      "code": 6,
+      "name": "OUTPUT",
+      "nodes": [
+        { "ref": "U1", "pin": "1", "pinFunction": "OUT", "pinType": "output" },
+        { "ref": "R2", "pin": "2", "pinType": "passive" }
+      ]
+    },
+    {
+      "code": 7,
+      "name": "NONINV_IN",
+      "nodes": [
+        { "ref": "U1", "pin": "3", "pinFunction": "IN+", "pinType": "input" }
+      ]
+    }
+  ]
+}
