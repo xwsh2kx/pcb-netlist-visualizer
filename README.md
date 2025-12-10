@@ -203,7 +203,7 @@ docker push $ECR_URL/pcb-server:latest
 
 ## Example Files
 
-The `client/src/examples/` directory contains sample netlists:
+The `/examples/` directory contains sample netlists:
 
 - `voltage-divider.json` - Simple resistor divider
 - `inverting-amplifier.json` - Op-amp circuit with feedback
