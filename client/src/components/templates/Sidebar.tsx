@@ -8,7 +8,7 @@ interface SidebarProps {
   selectedNetlist: Netlist | null;
   validationErrors: Array<{ rule: string; message: string; severity: 'error' | 'warning' }>;
   isLoading: boolean;
-  onUploadSuccess: () => void;
+  onUploadSuccess: (id: string) => void;
   onSelect: (id: string) => void;
 }
 

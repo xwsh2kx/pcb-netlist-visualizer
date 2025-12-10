@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { AppLayout, Sidebar, MainContent } from './components';
 import { useSubmissions, useSchematic } from './hooks';
 
@@ -17,6 +18,11 @@ export function App() {
   const schematicData = useSchematic(netlist);
   const validationErrors = selected?.validationErrors ?? [];
 
+  const handleUploadSuccess = useCallback(async (id: string) => {
+    await refresh();
+    await select(id);
+  }, [refresh, select]);
+
   const sidebar = (
     <Sidebar
       submissions={submissions}
@@ -24,7 +30,7 @@ export function App() {
       selectedNetlist={netlist}
       validationErrors={validationErrors}
       isLoading={isLoading}
-      onUploadSuccess={refresh}
+      onUploadSuccess={handleUploadSuccess}
       onSelect={select}
     />
   );

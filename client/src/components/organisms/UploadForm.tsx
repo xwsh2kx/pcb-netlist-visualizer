@@ -4,7 +4,7 @@ import { SectionHeader } from '../atoms';
 import { useUpload } from '@/hooks';
 
 interface UploadFormProps {
-  onUploadSuccess: () => void;
+  onUploadSuccess: (id: string) => void;
 }
 
 export function UploadForm({ onUploadSuccess }: UploadFormProps) {
@@ -25,9 +25,10 @@ export function UploadForm({ onUploadSuccess }: UploadFormProps) {
         status: hasErrors ? 'warning' : 'success',
         duration: 4000,
         isClosable: true,
+        position: 'top'
       });
       
-      onUploadSuccess();
+      onUploadSuccess(response.id);
       reset();
     }
   };
