@@ -15,6 +15,8 @@ A full-stack application for uploading, visualizing, and validating electronic c
 - **Store** submissions per-user in MongoDB
 - **Review** validation results with highlighted violations
 
+<img width="2058" height="1173" alt="image" src="https://github.com/user-attachments/assets/02688d8b-0bd5-4d5c-8196-1c34eb97b9f4" />
+
 ## Quick Start
 
 ### Using Docker Compose (Recommended)
